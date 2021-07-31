@@ -1,1 +1,1 @@
-# quickcode-cli
+# E.D.I.T.H
