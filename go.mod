@@ -3,6 +3,7 @@ module edith
 go 1.16
 
 require (
+	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/spf13/cast v1.4.0 // indirect
 	github.com/spf13/cobra v1.2.1 // indirect
