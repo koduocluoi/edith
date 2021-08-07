@@ -16,23 +16,20 @@ limitations under the License.
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/tidwall/pretty"
 )
 
 // jsonCmd represents the json command
 var jsonCmd = &cobra.Command{
 	Use:   "json",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Beautify JSON",
+	Long:  `JSON is a helper command to beautify json`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("json called")
+		json_run(args)
 	},
 }
 
@@ -48,4 +45,12 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// jsonCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func json_run(args []string) {
+	var result map[string]interface{}
+	json.Unmarshal([]byte(args[0]), &result)
+
+	data, _ := json.Marshal(result)
+	fmt.Println(pretty.Pretty(json.Decode(data)))
 }
