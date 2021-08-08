@@ -52,5 +52,5 @@ func json_run(args []string) {
 	json.Unmarshal([]byte(args[0]), &result)
 
 	data, _ := json.Marshal(result)
-	fmt.Println(pretty.Pretty(json.Decode(data)))
+	fmt.Println(pretty.Pretty(string(data)))
 }
