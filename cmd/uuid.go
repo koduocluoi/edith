@@ -16,11 +16,9 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
-	"github.com/dustin/go-humanize"
-	"github.com/google/uuid"
 	"github.com/spf13/cobra"
+
+	"edith/service/uuid"
 )
 
 // uuidCmd represents the uuid command
@@ -29,7 +27,7 @@ var uuidCmd = &cobra.Command{
 	Short: "Convert a flatten UUID back to UUID",
 	Long:  `UUID is a helper command to convert flatten UUID (for ex: 00000000000000000000000000000000) back to UUID, default to uppercase`,
 	Run: func(cmd *cobra.Command, args []string) {
-		run(args)
+		uuid.Run(args)
 	},
 	Example: "edith uuid 00000000000000000000000000000000",
 }
@@ -46,22 +44,4 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// uuidCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
-func run(args []string) {
-	numberOfArgs := len(args)
-	if numberOfArgs == 0 {
-		fmt.Printf("Randomly generated UUID: %s\n", uuid.New())
-	} else {
-		for i := 0; i < numberOfArgs; i++ {
-			uuid, err := uuid.Parse(args[i])
-			if err != nil {
-				fmt.Printf("%s string parsed with error %s\n", humanize.Ordinal(i+1), err)
-			} else {
-				fmt.Printf("%s string parsed successfully: %s\n", humanize.Ordinal(i+1), uuid)
-			}
-		}
-	}
-
-	fmt.Println("Parsing successfully")
 }
