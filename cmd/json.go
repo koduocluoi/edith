@@ -16,11 +16,9 @@ limitations under the License.
 package cmd
 
 import (
-	"encoding/json"
-	"fmt"
+	"edith/service/json"
 
 	"github.com/spf13/cobra"
-	"github.com/tidwall/pretty"
 )
 
 // jsonCmd represents the json command
@@ -29,7 +27,7 @@ var jsonCmd = &cobra.Command{
 	Short: "Beautify JSON",
 	Long:  `JSON is a helper command to beautify json`,
 	Run: func(cmd *cobra.Command, args []string) {
-		json_run(args)
+		json.Run(args)
 	},
 }
 
@@ -45,12 +43,4 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// jsonCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-}
-
-func json_run(args []string) {
-	var result map[string]interface{}
-	json.Unmarshal([]byte(args[0]), &result)
-
-	data, _ := json.Marshal(result)
-	fmt.Println(pretty.Pretty(string(data)))
 }
