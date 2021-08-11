@@ -16,7 +16,7 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
+	"edith/service/todo"
 
 	"github.com/spf13/cobra"
 )
@@ -27,7 +27,7 @@ var todoCmd = &cobra.Command{
 	Short: "A todoist command",
 	Long:  `A CLI tool for todoist`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("todo called")
+		todo.Run(args)
 	},
 }
 
